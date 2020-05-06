@@ -1,7 +1,6 @@
 package {{package}};
 
 import {{modelPackage}}.*;
-import {{package}}.{{classname}}Service;
 
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
@@ -9,9 +8,8 @@ import io.swagger.jaxrs.*;
 {{#imports}}import {{import}};
 {{/imports}}
 
-import java.util.Map;
 import java.util.List;
-import {{package}}.NotFoundException;
+import java.util.Map;
 
 import java.io.InputStream;
 
@@ -19,8 +17,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
-import javax.inject.Inject;
-
 {{#useBeanValidation}}
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -33,10 +29,8 @@ import javax.validation.Valid;
 @io.swagger.annotations.Api(description = "the {{{baseName}}} API")
 {{>generatedAnnotation}}
 {{#operations}}
-public class {{classname}}  {
-
-    @Inject {{classname}}Service service;
-
+public interface {{classname}}  {
+   
 {{#operation}}
     @{{httpMethod}}
     {{#subresourceOperation}}@Path("{{{path}}}"){{/subresourceOperation}}
@@ -52,10 +46,7 @@ public class {{classname}}  {
     @io.swagger.annotations.ApiResponses(value = { {{#responses}}
         @io.swagger.annotations.ApiResponse(code = {{{code}}}, message = "{{{message}}}", response = {{{baseType}}}.class{{#containerType}}, responseContainer = "{{{containerType}}}"{{/containerType}}){{#hasMore}},
         {{/hasMore}}{{/responses}} })
-    public Response {{nickname}}({{#isMultipart}}MultipartFormDataInput input,{{/isMultipart}}{{#allParams}}{{>queryParams}}{{>pathParams}}{{>headerParams}}{{>bodyParams}}{{^isMultipart}}{{>formParams}},{{/isMultipart}}{{#isMultipart}}{{^isFormParam}},{{/isFormParam}}{{/isMultipart}}{{/allParams}}@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return service.{{nickname}}({{#isMultipart}}input,{{/isMultipart}}{{#allParams}}{{^isMultipart}}{{paramName}},{{/isMultipart}}{{#isMultipart}}{{^isFormParam}}{{paramName}},{{/isFormParam}}{{/isMultipart}}{{/allParams}}securityContext);
-    }
+    public Response {{nickname}}({{#isMultipart}}MultipartFormDataInput input,{{/isMultipart}}{{#allParams}}{{>queryParams}}{{>pathParams}}{{>headerParams}}{{>bodyParams}}{{^isMultipart}}{{>formParams}},{{/isMultipart}}{{#isMultipart}}{{^isFormParam}},{{/isFormParam}}{{/isMultipart}}{{/allParams}}@Context SecurityContext securityContext);
 {{/operation}}
 }
 {{/operations}}
