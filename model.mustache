@@ -2,8 +2,8 @@ package {{package}};
 
 import java.util.Objects;
 import java.util.ArrayList;
-{{#imports}}import {{import}};
-{{/imports}}
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 {{#serializableModel}}
 import java.io.Serializable;
 {{/serializableModel}}
