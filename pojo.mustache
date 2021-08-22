@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * {{.}}
  **/{{/description}}
 {{#useSwaggerAnnotations}}{{#description}}@ApiModel(description = "{{{.}}}"){{/description}}{{/useSwaggerAnnotations}}
-{{#x-java-class-annotations}}{{{.}}}
-{{/x-java-class-annotations}}
+{{#vendorExtensions.x-java-class-annotations}}{{{.}}}
+{{/vendorExtensions.x-java-class-annotations}}
 {{>generatedAnnotation}}{{>additionalModelTypeAnnotations}}public class {{classname}} {{#parent}}extends {{{.}}}{{/parent}} {{#serializableModel}}implements Serializable{{/serializableModel}} {
   {{#vars}}{{#isEnum}}{{^isContainer}}
 
 {{>enumClass}}{{/isContainer}}{{#isContainer}}{{#mostInnerItems}}
 
 {{>enumClass}}{{/mostInnerItems}}{{/isContainer}}{{/isEnum}}
-  {{#x-java-field-annotations}}{{{.}}}
-  {{/x-java-field-annotations}}
+  {{#vendorExtensions.x-java-field-annotations}}{{{.}}}
+  {{/vendorExtensions.x-java-field-annotations}}
   private {{#useBeanValidation}}@Valid {{/useBeanValidation}}{{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/vars}}
 
   {{#vars}}/**
@@ -47,14 +47,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
   {{#vendorExtensions.x-extra-annotation}}{{{vendorExtensions.x-extra-annotation}}}{{/vendorExtensions.x-extra-annotation}}{{#useSwaggerAnnotations}}
   @ApiModelProperty({{#example}}example = "{{{.}}}", {{/example}}{{#required}}required = {{required}}, {{/required}}value = "{{{description}}}"){{/useSwaggerAnnotations}}
   @JsonProperty("{{baseName}}")
-  {{#x-java-getter-annotations}}{{{.}}}
-  {{/x-java-getter-annotations}}
+  {{#vendorExtensions.x-java-getter-annotations}}{{{.}}}
+  {{/vendorExtensions.x-java-getter-annotations}}
 {{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}  public {{{datatypeWithEnum}}} {{getter}}() {
     return {{name}};
   }
 
-  {{#x-java-setter-annotations}}{{{.}}}
-  {{/x-java-setter-annotations}}
+  {{#vendorExtensions.x-java-setter-annotations}}{{{.}}}
+  {{/vendorExtensions.x-java-setter-annotations}}
   public void {{setter}}({{{datatypeWithEnum}}} {{name}}) {
     this.{{name}} = {{name}};
   }
