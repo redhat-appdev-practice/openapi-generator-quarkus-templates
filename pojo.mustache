@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 {{#useSwaggerAnnotations}}{{#description}}@ApiModel(description = "{{{.}}}"){{/description}}{{/useSwaggerAnnotations}}
 {{#vendorExtensions.x-java-class-annotations}}{{{.}}}
 {{/vendorExtensions.x-java-class-annotations}}
-{{>generatedAnnotation}}{{>additionalModelTypeAnnotations}}public class {{classname}} {{#parent}}extends {{{.}}}{{/parent}} {{#serializableModel}}implements Serializable{{/serializableModel}} {
+{{>generatedAnnotation}}{{>additionalModelTypeAnnotations}}
+public class {{classname}} {{#parent}}extends {{{.}}}{{/parent}} {{#serializableModel}}implements Serializable{{/serializableModel}} {
   {{#vars}}{{#isEnum}}{{^isContainer}}
 
 {{>enumClass}}{{/isContainer}}{{#isContainer}}{{#mostInnerItems}}
