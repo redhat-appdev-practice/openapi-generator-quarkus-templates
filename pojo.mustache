@@ -19,9 +19,11 @@ public class {{classname}}{{#parent}} extends {{{.}}}{{/parent}}{{#serializableM
 {{>enumClass}}{{/isContainer}}{{#isContainer}}{{#mostInnerItems}}
 
 {{>enumClass}}{{/mostInnerItems}}{{/isContainer}}{{/isEnum}}
-  {{#vendorExtensions.x-java-field-annotations}}{{{.}}}
+  {{#vendorExtensions.x-java-field-annotations}}
+  {{{.}}}
   {{/vendorExtensions.x-java-field-annotations}}
-  private {{#useBeanValidation}}@Valid {{/useBeanValidation}}{{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/vars}}
+  private {{#useBeanValidation}}@Valid {{/useBeanValidation}}{{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+  {{/vars}}
 
   {{#vars}}/**
    {{#description}}
@@ -45,16 +47,21 @@ public class {{classname}}{{#parent}} extends {{{.}}}{{/parent}}{{#serializableM
     {{/vars}}
   }{{/generateBuilders}}
 
-  {{#vendorExtensions.x-extra-annotation}}{{{vendorExtensions.x-extra-annotation}}}{{/vendorExtensions.x-extra-annotation}}{{#useSwaggerAnnotations}}
+  {{#vendorExtensions.x-extra-annotation}}
+  {{{.}}}
+  {{/vendorExtensions.x-extra-annotation}}
+  {{#useSwaggerAnnotations}}
   @ApiModelProperty({{#example}}example = "{{{.}}}", {{/example}}{{#required}}required = {{required}}, {{/required}}value = "{{{description}}}"){{/useSwaggerAnnotations}}
   @JsonProperty("{{baseName}}")
-  {{#vendorExtensions.x-java-getter-annotations}}{{{.}}}
-  {{/vendorExtensions.x-java-getter-annotations}}
-{{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}  public {{{datatypeWithEnum}}} {{getter}}() {
+  {{#vendorExtensions.x-java-getter-annotations}}
+  {{{.}}}
+  {{/vendorExtensions.x-java-getter-annotations}}{{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}
+  public {{{datatypeWithEnum}}} {{getter}}() {
     return {{name}};
   }
 
-  {{#vendorExtensions.x-java-setter-annotations}}{{{.}}}
+  {{#vendorExtensions.x-java-setter-annotations}}
+  {{{.}}}
   {{/vendorExtensions.x-java-setter-annotations}}
   public void {{setter}}({{{datatypeWithEnum}}} {{name}}) {
     this.{{name}} = {{name}};
