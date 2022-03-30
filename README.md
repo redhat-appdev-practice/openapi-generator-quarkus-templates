@@ -1,3 +1,7 @@
+# THIS REPO IS DEPRECATED
+
+**The templates in this repo have been accepted upstream into OpenAPI Generator and are no longer needed**
+
 # Customized Quarkus Template Files For OpenAPI Generator
 
 ## Overview
